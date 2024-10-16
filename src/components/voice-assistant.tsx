@@ -49,7 +49,7 @@ export function VoiceAssistantComponent() {
       const reader = new FileReader();
       reader.onload = async (event) => {
         if (event.target?.result) {
-          const base64Audio = event.target.result?.split(",")[1];
+          const base64Audio = (event.target.result as string).split(",")[1];
           try {
             const transcription = await transcribeAudio(base64Audio);
             console.log("Transcription result:", transcription);
