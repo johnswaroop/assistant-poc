@@ -11,6 +11,7 @@ import transcribeAudio from "@/app/transribeAudio";
 import { summarizeTranscription } from "@/app/summarize";
 import sendMail from "@/app/sendEmail";
 import { useGlobalAudioPlayer } from "react-use-audio-player";
+import axios from "axios";
 
 export function VoiceAssistantComponent() {
   const [email, setEmail] = useState("");
@@ -51,7 +52,11 @@ export function VoiceAssistantComponent() {
         if (event.target?.result) {
           const base64Audio = (event.target.result as string).split(",")[1];
           try {
-            const transcription = await transcribeAudio(base64Audio);
+            const res = await axios.post("/api/transcribe", {
+              base64URL: base64Audio,
+            });
+
+            const transcription = res.data.transcription;
             console.log("Transcription result:", transcription);
 
             const summary = await summarizeTranscription(
