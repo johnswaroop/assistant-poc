@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
-import transcribeAudio from "@/app/transribeAudio";
+
 import { summarizeTranscription } from "@/app/summarize";
 import sendMail from "@/app/sendEmail";
 import { useGlobalAudioPlayer } from "react-use-audio-player";
