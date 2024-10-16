@@ -17,9 +17,7 @@ export function VoiceAssistantComponent() {
   const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
-  const { load, play, duration } = useGlobalAudioPlayer();
-
-  console.log(duration);
+  const { load, play, duration, isLoading } = useGlobalAudioPlayer();
 
   useEffect(() => {
     load("/greeting.mp3");
@@ -124,37 +122,41 @@ export function VoiceAssistantComponent() {
               <h2 className="text-3xl font-bold text-black text-center">
                 Voice Assistant
               </h2>
-              <div
-                onClick={() => {
-                  //toggleListening()
-                  if (!isListening) {
-                    play();
-                    setTimeout(() => {
+              {!isLoading && (
+                <div
+                  onClick={() => {
+                    //toggleListening()
+                    if (!isListening) {
+                      play();
+                      setTimeout(() => {
+                        toggleListening();
+                      }, duration * 1000);
+                    } else {
                       toggleListening();
-                    }, duration * 1000);
-                  } else {
-                    toggleListening();
-                  }
-                }}
-                className="flex flex-col items-center w-full mt-6"
-              >
-                <Button
-                  className={`w-24 h-24 rounded-full transition-all ${
-                    isListening
-                      ? "bg-red-500 hover:bg-red-600"
-                      : "bg-green-500 hover:bg-green-600"
-                  }`}
+                    }
+                  }}
+                  className="flex flex-col items-center w-full mt-6"
                 >
-                  {isListening ? (
-                    <PhoneOff className="h-12 w-12 text-white" />
-                  ) : (
-                    <PhoneCall className="h-12 w-12 text-white" />
-                  )}
-                </Button>
-                <p className="text-black text-center mt-6">
-                  {isListening ? "Tap to end request" : "Tap to start request"}
-                </p>
-              </div>
+                  <Button
+                    className={`w-24 h-24 rounded-full transition-all ${
+                      isListening
+                        ? "bg-red-500 hover:bg-red-600"
+                        : "bg-green-500 hover:bg-green-600"
+                    }`}
+                  >
+                    {isListening ? (
+                      <PhoneOff className="h-12 w-12 text-white" />
+                    ) : (
+                      <PhoneCall className="h-12 w-12 text-white" />
+                    )}
+                  </Button>
+                  <p className="text-black text-center mt-6">
+                    {isListening
+                      ? "Tap to end request"
+                      : "Tap to start request"}
+                  </p>
+                </div>
+              )}
               <div className="bg-gray-100 p-4 rounded-lg mt-4">
                 <p className="text-black text-center">{transcript}</p>
               </div>
