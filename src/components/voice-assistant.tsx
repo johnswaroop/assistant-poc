@@ -52,9 +52,12 @@ export function VoiceAssistantComponent() {
         if (event.target?.result) {
           const base64Audio = (event.target.result as string).split(",")[1];
           try {
-            const res = await axios.post("/api/transcribe", {
-              base64URL: base64Audio,
-            });
+            const res = await axios.post(
+              "http://3.87.178.84:3001/api/transcribe",
+              {
+                base64URL: base64Audio,
+              }
+            );
 
             const transcription = res.data.transcription;
             console.log("Transcription result:", transcription);
