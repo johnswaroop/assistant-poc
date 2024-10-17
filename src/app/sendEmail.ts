@@ -39,8 +39,8 @@ const sendMail = async (email: string, summary: string) => {
 
                             <!-- Buttons to accept or reject booking -->
                             <div style="display:flex; align-items : center; gap : 4px;  text-align: center; margin-bottom: 20px;">
-                                <a href="" style="background-color: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; display: inline-block; margin-right: 10px;">Accept Booking</a>
-                                <a href="" style="background-color: #dc3545; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; display: inline-block;">Reject Booking</a>
+                                <a href="https://assistant-poc-production.up.railway.app/response/confirm" style="background-color: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; display: inline-block; margin-right: 10px;">Accept Booking</a>
+                                <a href="https://assistant-poc-production.up.railway.app/response/reject" style="background-color: #dc3545; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; display: inline-block;">Reject Booking</a>
                             </div>
 
                             <!-- Feedback input -->
